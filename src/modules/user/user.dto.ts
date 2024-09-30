@@ -1,0 +1,15 @@
+export type QueryUserDto = {
+  name?: string;
+  code?: string;
+  status?: number;
+};
+
+export type CreateUserDTO = {
+  name: string;
+  code: string;
+};
+
+export type UserLoginDTO = {
+  code: string;
+  password: string;
+};
