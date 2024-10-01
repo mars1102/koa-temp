@@ -7,7 +7,7 @@ const SECRET = "qwe123";
  * 签发
  */
 export const sign = (user: UserPojo) => {
-  return jwt.sign(user, SECRET, { expiresIn: 60 });
+  return jwt.sign(user, SECRET, { expiresIn: 60 * 60 });
 };
 
 export const verify = (token: string) => {

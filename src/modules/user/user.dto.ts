@@ -7,6 +7,7 @@ export type QueryUserDto = {
 export type CreateUserDTO = {
   name: string;
   code: string;
+  password: string;
 };
 
 export type UserLoginDTO = {

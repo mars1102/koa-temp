@@ -1,6 +1,7 @@
 import * as Router from "@koa/router";
 import { getUserInfoBuId, insert, login, queryUsers } from "./user.service";
 import ResResult from "../../common/resResult";
+import logger from "../../logger";
 
 const userRouter = new Router();
 
@@ -19,9 +20,10 @@ userRouter.post("/detail", async (ctx) => {
 });
 
 userRouter.post("/create", async (ctx) => {
-  const { name, code } = ctx.request.body;
-  const result = await insert({ name, code });
+  const { name, code, password } = ctx.request.body;
+  const result = await insert({ name, code, password });
 
+  logger.info(`${name} create success`);
   ctx.body = ResResult.success("success", result);
 });
 
