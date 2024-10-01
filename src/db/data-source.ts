@@ -1,17 +1,18 @@
 import { DataSource } from "typeorm";
 import { User } from "../modules/user/entity/user.entity";
+import config from "../config";
 
 export const mysqlDataSource = new DataSource({
   type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "root",
-  password: "root",
-  database: "koa_test",
+  host: config.mysql.host,
+  port: config.mysql.port,
+  username: config.mysql.username,
+  password: config.mysql.password,
+  database: config.mysql.database,
   synchronize: true,
   logging: ["query", "error"],
   entities: [User],
-  poolSize: 10,
+  poolSize: config.mysql.poolSize,
 });
 
 /**
