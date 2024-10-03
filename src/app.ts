@@ -8,6 +8,7 @@ import "reflect-metadata";
 import { initializeDataSource } from "./db/data-source";
 import userRouter from "./modules/user/user.controller";
 import { checkToken } from "./middleware/checkToken";
+import { validator } from "./middleware/validator";
 
 const app = new Koa();
 const router = new Router();
@@ -22,6 +23,7 @@ router.use(userRouter.routes(), userRouter.allowedMethods());
 app.use(cors());
 app.use(globalException);
 app.use(checkToken);
+app.use(validator);
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(3000);

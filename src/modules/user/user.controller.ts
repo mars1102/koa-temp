@@ -2,6 +2,7 @@ import * as Router from "@koa/router";
 import { getUserInfoBuId, insert, login, queryUsers } from "./user.service";
 import ResResult from "../../common/resResult";
 import logger from "../../logger";
+import { createUserSchema } from "./schema";
 
 const userRouter = new Router();
 
@@ -20,10 +21,14 @@ userRouter.post("/detail", async (ctx) => {
 });
 
 userRouter.post("/create", async (ctx) => {
-  const { name, code, password } = ctx.request.body;
-  const result = await insert({ name, code, password });
+  const validateResult = ctx.validate(createUserSchema, ctx.request.body);
 
-  logger.info(`${name} create success`);
+  if (validateResult) {
+    ctx.body = ResResult.failure("入参格式异常", validateResult);
+    return;
+  }
+  const result = await insert(ctx.request.body);
+
   ctx.body = ResResult.success("success", result);
 });
 

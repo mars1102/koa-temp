@@ -20,11 +20,6 @@ export const getUserInfoBuId = async (id: number) => {
 };
 
 export const insert = async (user: CreateUserDTO) => {
-  const { name, code } = user;
-
-  if (!name || !code) {
-    throw new Error("名字或编码不能为空!");
-  }
   return await UserDao.insertOne({
     id: Math.floor(Math.random() * 10000),
     ...user,

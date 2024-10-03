@@ -20,7 +20,7 @@ npm run dev
 
 线上环境启动使用pm2守护进程
 
-> ⚠️使用pm2直接运行ts文件需要在pm2安装typescript
+> 🐻使用pm2直接运行ts文件需要在pm2安装typescript
 >
 > ```bash
 > $ pm2 install typescript
@@ -71,5 +71,11 @@ $ pm2 monit
 | 3   | auth      | jsonwebtoken   | ✅     |
 | 4   | logger    | log4js         | ✅     |
 | 5   | config    | cross-env yaml | ✅     |
-| 6   | validator | -              |        |
+| 6   | validator | ajv            | ☑️     |
 | 7   | prod-env  | pm2            | ✅     |
+
+## Todo ⏱️
+
+- [ ] 校验不显示具体错误原因，只能显示，需配合ajv-errors
+- [ ] 打包
+- [ ] docker部署
